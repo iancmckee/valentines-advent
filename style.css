@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&family=Indie+Flower&display=swap');
+
+:root {
+    --primary-color: #ff758c;
+    --secondary-color: #ffcad4;
+    --envelope-color: #f7d1d5;
+    --envelope-flap-color: #eebec3;
+    --letter-bg: #fffbf0;
+    --text-color: #333;
+    --shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffe6eb;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Envelope Container */
+.envelope-container {
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    perspective: 1200px;
+    z-index: 10;
+    transition: all 0.5s ease;
+}
+
+/* Wrapper */
+.envelope-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s ease;
+}
+
+/* Envelope */
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+}
+
+.envelope.flip {
+    transform: rotateY(180deg);
+}
+
+
+/* Shake Animation */
+@keyframes shake {
+    0% {
+        transform: rotateY(0deg) rotateZ(0deg);
+    }
+
+    10% {
+        transform: rotateY(0deg) rotateZ(-10deg);
+    }
+
+    20% {
+        transform: rotateY(0deg) rotateZ(10deg);
+    }
+
+    30% {
+        transform: rotateY(0deg) rotateZ(-15deg);
+    }
+
+    40% {
+        transform: rotateY(0deg) rotateZ(15deg);
+    }
+
+    50% {
+        transform: rotateY(0deg) rotateZ(-20deg);
+    }
+
+    60% {
+        transform: rotateY(0deg) rotateZ(20deg);
+    }
+
+    70% {
+        transform: rotateY(0deg) rotateZ(-15deg);
+    }
+
+    80% {
+        transform: rotateY(0deg) rotateZ(10deg);
+    }
+
+    90% {
+        transform: rotateY(0deg) rotateZ(-5deg);
+    }
+
+    100% {
+        transform: rotateY(0deg) rotateZ(0deg);
+    }
+}
+
+.envelope-container:hover .envelope:not(.flip) {
+    animation: shake 2s ease-in-out;
+}
+
+
+
+/* Common Face Styles */
+.front-face,
+.back-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+}
+
+/* Front Face */
+.front-face {
+    background-color: var(--envelope-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.address-lines {
+    border-bottom: 2px solid #e0b0b5;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.address-lines span {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #c9465f;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.stamp {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 70px;
+    background-color: #fff;
+    border: 3px double #e0b0b5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #e0b0b5;
+    transform: rotate(5deg);
+}
+
+.stamp::after {
+    content: '♥';
+}
+
+/* Back Face */
+.back-face {
+    background-color: var(--envelope-color);
+    transform: rotateY(180deg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+/* Pocket Flaps */
+.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    overflow: hidden;
+    border-radius: 5px;
+    pointer-events: none;
+    backface-visibility: hidden;
+    transform: translateZ(5px);
+}
+
+.left-flap,
+.right-flap,
+.bottom-flap {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.left-flap {
+    left: 0;
+    border-width: 200px 0 0 280px;
+    border-color: transparent transparent transparent #edaeb5;
+    z-index: 3;
+}
+
+.right-flap {
+    right: 0;
+    border-width: 200px 280px 0 0;
+    border-color: transparent #f2cdd2 transparent transparent;
+    z-index: 2;
+}
+
+.bottom-flap {
+    left: 0;
+    border-width: 0 150px 100px 150px;
+    border-color: transparent transparent #eebec3 transparent;
+    z-index: 4;
+}
+
+/* Top Flap */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 140px 150px 0 150px;
+    border-color: #eda6ae transparent transparent transparent;
+    z-index: 20;
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out, z-index 0.2s 0.3s;
+    transform: translateZ(6px);
+}
+
+.envelope.open-flap .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+    transition: transform 0.6s ease-in-out, z-index 0.1s;
+}
+
+/* Letter */
+.letter {
+    position: absolute;
+    top: 5px;
+    width: 270px;
+    height: 180px;
+    background-color: var(--letter-bg);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.8s ease-in-out;
+    z-index: 5;
+    /* Initially behind pocket (z=10) */
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-style: preserve-3d;
+    /* Ensure letter is "behind" pocket in 3D space initially */
+    transform: translateZ(1px);
+}
+
+.letter::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, and Opera */
+}
+
+/* 1. Separation Phase */
+.letter.slide-up {
+    transform: translateY(-120vh) translateZ(2px) scale(0.5) !important;
+    z-index: 5;
+    transition: transform 1.5s ease-in-out;
+}
+
+/* Envelope drops down */
+.envelope-container {
+    transition: transform 0.8s ease-in-out;
+}
+
+.envelope-wrapper.slide-down .envelope {
+    transform: translateY(120vh) rotateY(180deg);
+    transition: all 1.5s ease-in-out;
+}
+
+/* 2. Expand Letter */
+.letter.expand {
+    /* Fixed positioning relative to viewport */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1) !important;
+
+    width: 90vw;
+    height: 90vh;
+    z-index: 1000;
+
+    max-width: 800px;
+    max-height: 900px;
+
+    overflow-y: auto;
+    opacity: 1;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    transition: all 0.8s ease-in-out;
+}
+
+.letter-content {
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+    transition: opacity 1s ease 0.5s;
+}
+
+.letter.expand .letter-content {
+    opacity: 1;
+}
+
+
+/* Content Styles */
+.letter h1 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-color);
+    margin: 10px 0 20px;
+    font-size: 2.5rem;
+}
+
+.letter h2 {
+    font-family: 'Indie Flower', cursive;
+    color: var(--primary-color);
+    margin: 10px 0 20px;
+    font-size: 2rem;
+}
+
+.letter p {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #555;
+    margin: 10px 0;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-top: 25px;
+    color: var(--primary-color);
+}
+
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(255, 200, 210, 0.1);
+    border-radius: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.door {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: transform 0.2s, background-color 0.2s;
+    font-size: 1rem;
+}
+
+.door:hover {
+    transform: scale(1.1);
+}
+
+.door.locked {
+    background-color: #f9f9f9;
+    color: #ccc;
+    cursor: not-allowed;
+    border-color: #eee;
+}
+
+.door.unlocked:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaa;
+    z-index: 0;
+}

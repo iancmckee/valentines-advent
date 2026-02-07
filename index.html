@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Valentine's Countdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 
+    Yes you can for sure hack this and get to see all the days, 
+    but why not just check out the source code for yourself?
+    https://github.com/iancmckee/valentines-advent
+    -->
+    <div class="envelope-container" id="envelope-container">
+        <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="front-face">
+                    <div class="stamp"></div>
+                    <div class="address-lines">
+                        <span>Katie</span>
+                    </div>
+                </div>
+                <div class="back-face">
+                    <div class="flap"></div>
+                    <div class="pocket">
+                        <div class="left-flap"></div>
+                        <div class="right-flap"></div>
+                        <div class="bottom-flap"></div>
+                    </div>
+                    <div class="letter" id="letter">
+                        <div class="letter-content">
+                            <h1>My Dearest Katie,</h1>
+                            <h2>What's up dude??</h2>
+                            <p>Since I'll be gone for Valentines this year, I wanted to give you a countdown of fun
+                                little things to do for valentines week!</p>
+                            <div id="calendar-grid">
+                            </div>
+                            <p>Come back each day to see what's next!</p>
+                            <p>Love always,</p>
+                            <p class="signature">Ethan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Did I say fun? I meant annoying...</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
