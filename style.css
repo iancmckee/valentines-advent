@@ -19,7 +19,88 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* Restored to center */
     overflow: hidden;
+}
+
+#photo-carousel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Allow photos to scatter across the background */
+    gap: 40px;
+    padding: 50px;
+    z-index: -1;
+    /* Move to background */
+    opacity: 0.4;
+    /* Fade it out */
+    pointer-events: none;
+    animation: floating-background 60s linear infinite;
+}
+
+@keyframes scroll-carousel {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes floating-background {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(5deg);
+    }
+}
+
+.polaroid {
+    background: white;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    flex-shrink: 0;
+    width: 140px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+.polaroid:nth-child(odd) {
+    transform: rotate(-3deg);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+/* Polaroids can be vertical or horizontal as requested */
+.polaroid.horizontal {
+    width: 200px;
+    height: 160px;
+}
+
+.polaroid.horizontal img {
+    height: 120px;
 }
 
 /* Envelope Container */

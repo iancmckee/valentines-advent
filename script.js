@@ -5,6 +5,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const envelope = document.getElementById('envelope');
     const letter = document.getElementById('letter');
 
+    // Photo Carousel Support
+    const photoFiles = [
+        'DSC_0678-Edit.jpg',
+        'DSC_9155.jpg',
+        'IMG_0620.JPG',
+        'IMG_0636.JPG',
+        'IMG_0651.jpg',
+        'IMG_0744.jpg',
+        'IMG_0838.jpg',
+        'IMG_2276.jpg',
+        'IMG_2869.jpg',
+        'IMG_3157.jpg',
+        'IMG_3656.PNG',
+        'IMG_3769.jpg',
+        'IMG_4132.jpg',
+        'IMG_4627.jpg',
+        'IMG_5083.jpg',
+        'IMG_5206.jpg',
+        'IMG_5332.jpg',
+        'IMG_6852.jpg',
+        'IMG_7010.jpg',
+        'IMG_7210.jpg',
+        'IMG_7296.jpg',
+        'IMG_8558.jpg',
+        'IMG_8573.jpg',
+        'IMG_8579.jpg',
+        'IMG_8758.jpg'
+    ];
+
+    const carousel = document.getElementById('photo-carousel');
+    if (carousel) {
+        // More copies for background fill
+        const displayPhotos = [...photoFiles, ...photoFiles, ...photoFiles];
+        // Shuffle the list
+        displayPhotos.sort(() => Math.random() - 0.5);
+
+        displayPhotos.forEach(photo => {
+            const polaroid = document.createElement('div');
+            polaroid.classList.add('polaroid');
+
+            // Randomly make some horizontal
+            if (Math.random() > 0.7) {
+                polaroid.classList.add('horizontal');
+            }
+
+            // Random rotation and slight offset for "scattered" look
+            const randomRotation = (Math.random() - 0.5) * 40; // -20 to 20 deg
+            const randomScale = 0.8 + Math.random() * 0.4; // 0.8 to 1.2
+            polaroid.style.transform = `rotate(${randomRotation}deg) scale(${randomScale})`;
+
+            const img = document.createElement('img');
+            img.src = `photos/${photo}`;
+            img.alt = "Memory";
+
+            polaroid.appendChild(img);
+            carousel.appendChild(polaroid);
+        });
+    }
+
     // Envelope Interaction
     let isOpen = false;
 

@@ -168,31 +168,43 @@
 
 .heart {
     position: absolute;
-    width: 30px;
-    height: 45px;
-    animation: fall 5s linear forwards;
+    width: 60px;
+    /* Increased from 30px for better hit area */
+    height: 60px;
+    /* Increased from 45px for better hit area */
+    animation: fall 3s linear forwards;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove mobile tap highlight */
+    outline: none;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .heart::before,
 .heart::after {
     content: "";
     position: absolute;
-    top: 0;
-    width: 22px;
-    height: 35px;
+    top: 10px;
+    /* Adjusted for larger container */
+    width: 20px;
+    height: 32px;
     background: var(--primary-color);
-    border-radius: 50px 50px 0 0;
+    border-radius: 20px 20px 0 0;
 }
 
 .heart::before {
-    left: 15px;
+    left: 30px;
+    /* Adjusted: 15px + offset for 60px container */
     transform: rotate(-45deg);
     transform-origin: 0 100%;
 }
 
 .heart::after {
-    left: 0;
+    left: 10px;
+    /* Adjusted: -5px + offset for 60px container */
     transform: rotate(45deg);
     transform-origin: 100% 100%;
 }
