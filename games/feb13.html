@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 13 - The Oracle of Love</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container">
+        <h1>The Oracle of Love</h1>
+        <p>Ask a yes or no question about our future...</p>
+        <div class="oracle-container">
+            <input type="text" id="question-input" placeholder="e.g., Will we be happy forever?">
+            <button class="btn-game btn-primary" id="ask-btn">Ask</button>
+            <div class="oracle-answer" id="oracle-answer"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <img id="success-photo" class="modal-photo" src="" alt="Surprise!" style="display:none;">
+            <h2>The Oracle has spoken!</h2>
+            <p>Any future with you is a good one.</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="feb13.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 12 - Whack-a-Kiss</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container">
+        <h1>Whack-a-Kiss!</h1>
+        <p>Click the lips! 💋</p>
+        <div class="whack-grid">
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+            <div class="hole"></div>
+        </div>
+        <div id="score">Score: 0</div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <h2>Smooch!</h2>
+            <p>You're a master kiss-catcher!</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="feb12.js"></script>
+</body>
+
+</html>

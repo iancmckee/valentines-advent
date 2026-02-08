@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 10 - A Tough Choice</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container">
+        <h1>Who is the Prettiest Girl?</h1>
+        <div class="photo-selection">
+            <!-- 
+                Instructions for personalization:
+                Replace the src attribute for each img tag with a real photo.
+                For the correct choice, make sure the img tag has the id="correct-choice".
+            -->
+            <img src="https://via.placeholder.com/200" alt="Choice 1" class="photo-choice">
+            <img src="https://via.placeholder.com/200" alt="Choice 2" class="photo-choice" id="correct-choice">
+            <img src="https://via.placeholder.com/200" alt="Choice 3" class="photo-choice">
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <img id="success-photo" class="modal-photo" src="" alt="Surprise!" style="display:none;">
+            <h2>Correct!</h2>
+            <p>The easiest choice I've ever had to make.</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="failure-modal">
+        <div class="modal">
+            <h2>Hmm...</h2>
+            <p>Are you sure about that? Try again!</p>
+            <div class="modal-buttons">
+                <button id="try-again-btn" class="btn-home btn-replay">Try Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="feb10.js"></script>
+</body>
+
+</html>
