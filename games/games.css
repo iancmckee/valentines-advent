@@ -2,14 +2,18 @@
 
 /* 1. Layout & Containers */
 .game-body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffe6eb;
-    overflow: hidden;
+    overflow-y: auto;
+    /* Allow vertical scroll on mobile if needed */
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    padding: 20px 0;
+    /* Add some padding for scrolled content */
+    box-sizing: border-box;
 }
 
 .game-container {
@@ -27,8 +31,10 @@
 .game-container h1 {
     color: var(--primary-color);
     font-family: 'Dancing Script', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
+    font-size: 3rem;
+    /* Reduced from 3.5rem */
+    margin-bottom: 1rem;
+    /* Reduced from 2rem */
 }
 
 /* 2. Buttons */
@@ -160,6 +166,8 @@
 #hearts-container {
     position: relative;
     height: 400px;
+    max-height: 50vh;
+    /* Don't exceed half the screen height on mobile */
     border: 2px solid var(--secondary-color);
     border-radius: 10px;
     overflow: hidden;
@@ -363,6 +371,47 @@
 
     100% {
         transform: translate(-50%, 100%);
+    }
+}
+
+/* 5. Mobile Adjustments */
+@media (max-width: 600px) {
+    .game-container {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .game-container h1 {
+        font-size: 2.5rem;
+    }
+
+    #hearts-container {
+        height: 350px;
+    }
+
+    .game-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-height: 700px) {
+    .game-container {
+        padding: 1rem;
+    }
+
+    .game-container h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .game-container p {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #hearts-container {
+        height: 300px;
     }
 }
 
