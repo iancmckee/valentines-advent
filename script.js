@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const today = new Date();
-    const currentDay = 10// today.getDate();
+    const currentDay = today.getDate();
     const currentMonth = today.getMonth();
 
     const startDay = 7;
