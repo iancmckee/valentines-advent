@@ -11,14 +11,10 @@ const pool = [
 document.addEventListener('DOMContentLoaded', () => {
     const holes = document.querySelectorAll('.hole');
     const scoreElement = document.getElementById('score');
-    const timerElement = document.getElementById('timer');
     const modalOverlay = document.getElementById('success-modal');
     const successPhoto = document.getElementById('success-photo');
-    const finalScoreText = document.getElementById('final-score-text');
     let score = 0;
-    let timeLeft = 30;
     let gameInterval;
-    let timerInterval;
 
     function popKiss() {
         const randomHole = holes[Math.floor(Math.random() * holes.length)];
@@ -33,36 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
             score++;
             scoreElement.textContent = `Score: ${score}`;
             kiss.remove();
+            if (score >= 10) {
+                endGame();
+            }
         });
 
         setTimeout(() => {
-            if (kiss.parentElement) kiss.remove();
+            if (kiss) kiss.remove();
         }, 1500);
     }
 
     function startGame() {
         gameInterval = setInterval(popKiss, 800);
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            if (timerElement) timerElement.textContent = `Time: ${timeLeft}s`;
-            if (timeLeft <= 0) {
-                endGame();
-            }
-        }, 1000);
     }
 
     function endGame() {
         clearInterval(gameInterval);
-        clearInterval(timerInterval);
-
-        // Remove any remaining kisses
-        document.querySelectorAll('.kiss').forEach(kiss => kiss.remove());
 
         const randomPhoto = pool[Math.floor(Math.random() * pool.length)];
         successPhoto.src = `../photos/${randomPhoto}`;
         successPhoto.style.display = 'block';
-
-        if (finalScoreText) finalScoreText.textContent = `Final Score: ${score}`;
 
         modalOverlay.classList.add('show');
         confetti({
@@ -74,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function resetGame() {
         score = 0;
-        timeLeft = 30;
-        scoreElement.textContent = `Score: 0`;
-        if (timerElement) timerElement.textContent = `Time: 30s`;
+        scoreElement.textContent = `Score: ${score}`;
         modalOverlay.classList.remove('show');
         successPhoto.style.display = 'none';
         startGame();
