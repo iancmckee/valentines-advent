@@ -111,4 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.margin = '';
         noBtn.classList.remove('shrink');
     }
+    function resetGame() {
+        modalOverlay.classList.remove('show');
+        resetStyles();
+    }
+
+    document.getElementById('replay-btn').addEventListener('click', resetGame);
 });

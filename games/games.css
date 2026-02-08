@@ -83,6 +83,25 @@
 }
 
 /* 3. Modal System */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-replay {
+    background-color: #fce4ec;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-replay:hover {
+    background-color: #f8bbd0;
+    transform: scale(1.05);
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -135,4 +154,292 @@
 /* 4. Common Utilities */
 .hidden {
     display: none;
+}
+
+/* Day 8: Catch the Hearts */
+#hearts-container {
+    position: relative;
+    height: 400px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff8f9;
+}
+
+.heart {
+    position: absolute;
+    width: 30px;
+    height: 45px;
+    animation: fall 5s linear forwards;
+    cursor: pointer;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 22px;
+    height: 35px;
+    background: var(--primary-color);
+    border-radius: 50px 50px 0 0;
+}
+
+.heart::before {
+    left: 15px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-50px) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(450px) rotate(360deg);
+    }
+}
+
+.heart.heart-pink::before,
+.heart.heart-pink::after {
+    background: #ff69b4;
+}
+
+.heart.heart-gold::before,
+.heart.heart-gold::after {
+    background: #ffd700;
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+#score,
+#timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Day 9: Memory Match */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 90px;
+    height: 90px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.card.flipped {
+    background-color: var(--primary-color);
+    transform: rotateY(180deg);
+}
+
+#status {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Day 10: Pick the Prettiest Girl */
+.photo-selection {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.photo-choice {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.photo-choice:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Day 11: Valentine's Quiz */
+#quiz-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.quiz-answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.quiz-answer {
+    font-size: 1.2rem;
+    padding: 15px 20px;
+}
+
+/* Day 12: Whack-a-Kiss */
+.whack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 300px;
+    margin: 2rem auto 0;
+}
+
+.hole {
+    width: 80px;
+    height: 80px;
+    background-color: #ffcad4;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.kiss {
+    font-size: 4rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    animation: pop-up 1.5s ease-in-out;
+    cursor: pointer;
+}
+
+@keyframes pop-up {
+    0% {
+        transform: translate(-50%, 100%);
+    }
+
+    20% {
+        transform: translate(-50%, -10%);
+    }
+
+    80% {
+        transform: translate(-50%, -10%);
+    }
+
+    100% {
+        transform: translate(-50%, 100%);
+    }
+}
+
+/* Day 13: Oracle of Love */
+.oracle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+#question-input {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--secondary-color);
+    width: 90%;
+    text-align: center;
+}
+
+.oracle-answer {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    min-height: 60px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.oracle-answer.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Day 14: Love Coupons */
+.coupon-book {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.coupon {
+    background: #fffbf0;
+    border: 2px dashed var(--primary-color);
+    border-radius: 15px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    position: relative;
+}
+
+.coupon:hover {
+    transform: scale(1.02);
+    background-color: #fff;
+}
+
+.coupon-content h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0 0 0.5rem;
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.coupon-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+
+.coupon.redeemed {
+    background-color: #e0e0e0;
+    border-style: solid;
+    cursor: not-allowed;
+}
+
+.coupon.redeemed .coupon-content h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #888;
+    text-align: center;
+    font-size: 2rem;
 }
