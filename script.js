@@ -7,31 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Photo Carousel Support
     const photoFiles = [
-        'DSC_0678-Edit.jpg',
-        'DSC_9155.jpg',
-        'IMG_0620.JPG',
-        'IMG_0636.JPG',
-        'IMG_0651.jpg',
-        'IMG_0744.jpg',
-        'IMG_0838.jpg',
-        'IMG_2276.jpg',
-        'IMG_2869.jpg',
-        'IMG_3157.jpg',
-        'IMG_3656.PNG',
-        'IMG_3769.jpg',
-        'IMG_4132.jpg',
-        'IMG_4627.jpg',
-        'IMG_5083.jpg',
-        'IMG_5206.jpg',
-        'IMG_5332.jpg',
-        'IMG_6852.jpg',
-        'IMG_7010.jpg',
-        'IMG_7210.jpg',
-        'IMG_7296.jpg',
-        'IMG_8558.jpg',
-        'IMG_8573.jpg',
-        'IMG_8579.jpg',
-        'IMG_8758.jpg'
+        'DSC_0678-Edit.webp',
+        'DSC_9155.webp',
+        'IMG_0620.webp',
+        'IMG_0636.webp',
+        'IMG_0651.webp',
+        'IMG_0744.webp',
+        'IMG_0838.webp',
+        'IMG_2276.webp',
+        'IMG_2869.webp',
+        'IMG_3157.webp',
+        'IMG_3656.webp',
+        'IMG_3769.webp',
+        'IMG_4132.webp',
+        'IMG_4627.webp',
+        'IMG_5083.webp',
+        'IMG_5206.webp',
+        'IMG_5332.webp',
+        'IMG_6852.webp',
+        'IMG_7010.webp',
+        'IMG_7210.webp',
+        'IMG_7296.webp',
+        'IMG_8558.webp',
+        'IMG_8573.webp',
+        'IMG_8579.webp',
+        'IMG_8758.webp'
     ];
 
     const carousel = document.getElementById('photo-carousel');
@@ -44,20 +44,26 @@ document.addEventListener('DOMContentLoaded', () => {
         displayPhotos.forEach(photo => {
             const polaroid = document.createElement('div');
             polaroid.classList.add('polaroid');
-
-            // Randomly make some horizontal
-            if (Math.random() > 0.7) {
-                polaroid.classList.add('horizontal');
-            }
-
-            // Random rotation and slight offset for "scattered" look
-            const randomRotation = (Math.random() - 0.5) * 40; // -20 to 20 deg
-            const randomScale = 0.8 + Math.random() * 0.4; // 0.8 to 1.2
-            polaroid.style.transform = `rotate(${randomRotation}deg) scale(${randomScale})`;
+            polaroid.style.opacity = '0'; // Hide until orientation is determined
 
             const img = document.createElement('img');
             img.src = `photos/${photo}`;
             img.alt = "Memory";
+            img.loading = "lazy";
+            img.decoding = "async";
+
+            img.onload = () => {
+                // Determine orientation
+                if (img.naturalWidth > img.naturalHeight) {
+                    polaroid.classList.add('horizontal');
+                }
+
+                // Random rotation and slight offset for "scattered" look
+                const randomRotation = (Math.random() - 0.5) * 40; // -20 to 20 deg
+                const randomScale = 0.8 + Math.random() * 0.4; // 0.8 to 1.2
+                polaroid.style.transform = `rotate(${randomRotation}deg) scale(${randomScale})`;
+                polaroid.style.opacity = '1'; // Show now that it's ready
+            };
 
             polaroid.appendChild(img);
             carousel.appendChild(polaroid);
