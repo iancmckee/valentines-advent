@@ -1,36 +1,50 @@
+const pool = [
+    'DSC_0678-Edit.webp', 'DSC_9155.webp', 'IMG_0620.webp', 'IMG_0636.webp',
+    'IMG_0651.webp', 'IMG_0744.webp', 'IMG_0838.webp', 'IMG_2276.webp',
+    'IMG_2869.webp', 'IMG_3157.webp', 'IMG_3656.webp', 'IMG_3769.webp',
+    'IMG_4132.webp', 'IMG_4627.webp', 'IMG_5083.webp', 'IMG_5206.webp',
+    'IMG_5332.webp', 'IMG_6852.webp', 'IMG_7010.webp', 'IMG_7210.webp',
+    'IMG_7296.webp', 'IMG_8558.webp', 'IMG_8573.webp', 'IMG_8579.webp',
+    'IMG_8758.webp'
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
     const btnContainer = document.getElementById('btn-container');
     const modalOverlay = document.getElementById('success-modal');
+    const successPhoto = document.getElementById('success-photo');
 
     yesBtn.addEventListener('click', () => {
-        setTimeout(() => {
-            modalOverlay.classList.add('show');
-            const duration = 3000;
-            const end = Date.now() + duration;
+        const randomPhoto = pool[Math.floor(Math.random() * pool.length)];
+        successPhoto.src = `../photos/${randomPhoto}`;
+        successPhoto.style.display = 'block';
 
-            (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#ff758c', '#ffcad4', '#f7d1d5']
-                });
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#ff758c', '#ffcad4', '#f7d1d5']
-                });
+        modalOverlay.classList.add('show');
 
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
-        }, 200);
+        const duration = 3000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+            confetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: ['#ff758c', '#ffcad4', '#f7d1d5']
+            });
+            confetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: ['#ff758c', '#ffcad4', '#f7d1d5']
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
     });
 
     let isRunningAway = false;
@@ -111,10 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.margin = '';
         noBtn.classList.remove('shrink');
     }
-    function resetGame() {
-        modalOverlay.classList.remove('show');
-        resetStyles();
-    }
 
-    document.getElementById('replay-btn').addEventListener('click', resetGame);
+    document.getElementById('replay-btn').addEventListener('click', () => {
+        modalOverlay.classList.remove('show');
+        successPhoto.style.display = 'none';
+        resetStyles();
+    });
 });

@@ -2,30 +2,31 @@
 
 /* 1. Layout & Containers */
 .game-body {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffe6eb;
-    overflow-y: auto;
-    /* Allow vertical scroll on mobile if needed */
+    overflow: hidden;
+    /* Reverted to hidden as requested */
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    padding: 20px 0;
-    /* Add some padding for scrolled content */
     box-sizing: border-box;
 }
 
 .game-container {
     text-align: center;
     background: white;
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 90%;
+    max-height: 95vh;
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 600px;
-    /* Standardized width from day-5/6 */
+    box-sizing: border-box;
 }
 
 .game-container h1 {
@@ -154,7 +155,19 @@
     font-family: 'Indie Flower', cursive;
     font-size: 1.5rem;
     color: #555;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+.modal-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 8px solid white;
+    border-bottom: 30px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 1.5rem;
+    display: block;
+    transform: rotate(-2deg);
 }
 
 /* 4. Common Utilities */
@@ -273,6 +286,20 @@
     font-weight: bold;
     color: white;
     transition: transform 0.3s;
+    overflow: hidden;
+    /* Ensure image face doesn't bleed out */
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    /* Hidden until flipped */
+}
+
+.card.flipped img {
+    display: block;
 }
 
 .card.flipped {
@@ -401,17 +428,27 @@
     }
 
     .game-container h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 0.5rem;
     }
 
     .game-container p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         margin-bottom: 0.5rem;
     }
 
     #hearts-container {
-        height: 300px;
+        height: 40vh;
+        /* Scaled to viewport height */
+    }
+
+    .game-stats {
+        margin-top: 0.5rem;
+    }
+
+    #score,
+    #timer {
+        font-size: 1.2rem;
     }
 }
 

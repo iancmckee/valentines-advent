@@ -4,28 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>February 8 - Catch the Hearts</title>
+    <title>February 9 - Memory Match</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="games.css">
 </head>
 
 <body class="game-body">
     <div class="game-container">
-        <h1>Catch the Hearts!</h1>
-        <p>Click on the falling hearts to score points.</p>
-        <div id="hearts-container"></div>
-        <div class="game-stats">
-            <div id="timer">Time: 30s</div>
-            <div id="score">Score: 0</div>
-        </div>
+        <h1>Memory Match</h1>
+        <p>Match the pairs of cards!</p>
+        <div class="memory-grid"></div>
+        <p id="status">Moves: 0</p>
     </div>
 
     <div class="modal-overlay" id="success-modal">
         <div class="modal">
             <img id="success-photo" class="modal-photo" src="" alt="Surprise!" style="display:none;">
-            <h2>Crushed it!</h2>
-            <p id="final-score-text">Final Score: 0</p>
-            <p>You've captured my heart (and these hearts)!</p>
+            <h2>You've matched!</h2>
+            <p>Just like us!</p>
             <div class="modal-buttons">
                 <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
                 <a href="../index.html" class="btn-home">Back to Calendar</a>
@@ -34,7 +30,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-    <script src="feb8.js"></script>
+    <script src="feb9.js"></script>
 </body>
 
 </html>
