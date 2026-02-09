@@ -75,12 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             btnContainer.insertBefore(noBtn, yesBtn);
         }
-        yesBtn.click();
+
+        // Add a short delay so the user sees the swap before the modal pops up
+        setTimeout(() => {
+            yesBtn.click();
+        }, 500);
     });
 
     noBtn.addEventListener('mouseover', (e) => {
         triggerInteraction(e);
     });
+
+    noBtn.addEventListener('touchstart', (e) => {
+        // Prevent default only if we are triggering a fun behavior
+        // To allow the "swap" logic in mousedown/click to eventually work if needed
+        triggerInteraction(e);
+    }, { passive: true });
 
     function runAway() {
         if (noBtn.style.position !== 'fixed') {

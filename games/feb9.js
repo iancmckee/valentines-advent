@@ -1,6 +1,6 @@
 const pool = [
     'DSC_0678-Edit.webp', 'DSC_9155.webp', 'IMG_0620.webp', 'IMG_0636.webp',
-    'IMG_0651.webp', 'IMG_0744.webp', 'IMG_0838.webp', 'IMG_2276.webp',
+    'IMG_0651.webp', 'IMG_0838.webp', 'IMG_2276.webp',
     'IMG_2869.webp', 'IMG_3157.webp', 'IMG_3656.webp', 'IMG_3769.webp',
     'IMG_4132.webp', 'IMG_4627.webp', 'IMG_5083.webp', 'IMG_5206.webp',
     'IMG_5332.webp', 'IMG_6852.webp', 'IMG_7010.webp', 'IMG_7210.webp',
@@ -36,9 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('card');
             card.dataset.value = cards[i];
 
+            const inner = document.createElement('div');
+            inner.classList.add('card-inner');
+
+            const back = document.createElement('div');
+            back.classList.add('card-back');
+            // Back is shown initially
+
+            const front = document.createElement('div');
+            front.classList.add('card-front');
+
             const img = document.createElement('img');
             img.src = `../photos/${cards[i]}`;
-            card.appendChild(img);
+            front.appendChild(img);
+
+            inner.appendChild(back);
+            inner.appendChild(front);
+            card.appendChild(inner);
 
             card.addEventListener('click', flipCard);
             grid.appendChild(card);

@@ -269,42 +269,63 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .card {
-    width: 90px;
-    height: 90px;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    transition: transform 0.3s;
-    overflow: hidden;
-    /* Ensure image face doesn't bleed out */
 }
 
-.card img {
+.card-back {
+    background-color: var(--secondary-color);
+}
+
+.card-front {
+    background-color: var(--primary-color);
+    transform: rotateY(180deg);
+}
+
+.card-front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none;
-    /* Hidden until flipped */
-}
-
-.card.flipped img {
+    image-orientation: from-image;
     display: block;
-}
-
-.card.flipped {
-    background-color: var(--primary-color);
-    transform: rotateY(180deg);
 }
 
 #status {
