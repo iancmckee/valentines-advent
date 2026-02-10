@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 12 - Memory Puzzle</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container">
+        <h1>Memory Puzzle</h1>
+        <p>Drag the pieces to solve the puzzle!</p>
+        <div class="puzzle-container">
+            <div id="puzzle-grid" class="puzzle-grid"></div>
+            <div id="puzzle-pieces" class="puzzle-pieces"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <img id="success-photo" class="modal-photo" src="" alt="Surprise!" style="display:none;">
+            <h2>You put together our memory!</h2>
+            <p>That was so fun wasn't it?</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="feb12.js"></script>
+</body>
+
+</html>

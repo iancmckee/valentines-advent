@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 13 - Connect Four</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container">
+        <h1>Connect Four Hearts</h1>
+        <p>Try to connect four of your hearts in a row!</p>
+        <div id="connect4-board" class="connect4-board"></div>
+        <div id="turn-indicator" class="turn-indicator">Your turn</div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <h2 id="modal-title">You won!</h2>
+            <p id="modal-message">You are the queen of my heart!</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="feb13.js"></script>
+</body>
+
+</html>

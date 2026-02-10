@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 11 - Word Scramble</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container">
+        <h1>Valentine's Word Scramble</h1>
+        <p>Unscramble the letters to form a word related to love!</p>
+        <div id="scrambled-word" class="scrambled-word"></div>
+        <input type="text" id="guess-input" class="guess-input" placeholder="Your guess...">
+        <button id="submit-btn" class="btn-home">Submit</button>
+        <div id="feedback" class="feedback"></div>
+        <div class="game-stats">
+            <div id="score">Score: 0</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <img id="success-photo" class="modal-photo" src="" alt="Surprise!" style="display:none;">
+            <h2>You're a Word Wizard!</h2>
+            <p id="final-score-text">Final Score: 0/5</p>
+            <p>You've unscrambled the language of love!</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="feb11.js"></script>
+</body>
+
+</html>

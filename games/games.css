@@ -118,10 +118,14 @@
     background: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    /* Changed from center */
+    padding-top: 5vh;
+    /* Added padding */
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
+    /* Slowed down transition */
 }
 
 .modal-overlay.show {
@@ -357,7 +361,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Day 11: Valentine's Quiz */
+/* Day 11: Valentine's Word Scramble */
 #quiz-container h2 {
     font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
@@ -374,6 +378,87 @@
 .quiz-answer {
     font-size: 1.2rem;
     padding: 15px 20px;
+}
+
+.scrambled-word {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.letter-tile {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.letter-tile:hover {
+    transform: scale(1.1);
+}
+
+.guess-input {
+    width: calc(100% - 22px);
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.guess-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 117, 140, 0.4);
+}
+
+.feedback {
+    min-height: 24px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: opacity 0.3s;
+}
+
+.feedback.correct {
+    color: #28a745;
+}
+
+.feedback.incorrect {
+    color: #dc3545;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.feedback.incorrect {
+    animation: shake 0.3s;
 }
 
 /* Day 12: Whack-a-Kiss */
@@ -561,4 +646,293 @@
     color: #888;
     text-align: center;
     font-size: 2rem;
+}
+
+/* Day 14: Valentine's Crossword */
+.crossword-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    align-items: flex-start;
+}
+
+.crossword-grid {
+    display: grid;
+    gap: 2px;
+    background-color: #333;
+    border: 3px solid #333;
+    border-radius: 5px;
+}
+
+.crossword-cell {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+}
+
+.crossword-cell.empty {
+    background-color: #333;
+}
+
+.crossword-cell input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.crossword-cell input:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+.clue-number {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.crossword-clues {
+    text-align: left;
+}
+
+.crossword-clues h3 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.crossword-clues p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+/* Day 13: Broken Heart Puzzle */
+.puzzle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 12vmin);
+    grid-template-rows: repeat(4, 12vmin);
+    gap: 2px;
+    border: 2px solid var(--primary-color);
+    padding: 5px;
+    background-color: #ffeff2;
+    max-width: 80vw;
+    max-height: 80vw;
+}
+
+.puzzle-pieces {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    width: 52vmin;
+    max-width: 80vw;
+    padding: 10px;
+    min-height: 26vmin;
+    border: 1px dashed #ccc;
+}
+
+.puzzle-piece {
+    width: 12vmin;
+    height: 12vmin;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 5px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #fff;
+}
+
+.puzzle-piece.dragging {
+    opacity: 0.7;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.drop-zone {
+    width: 12vmin;
+    /* Responsive drop zone - SMALLER */
+    height: 12vmin;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px dashed #aaa;
+}
+
+.drop-zone.hovered {
+    background-color: #e0e0e0;
+}
+
+.drop-zone .puzzle-piece {
+    cursor: default;
+    box-shadow: none;
+    border: none;
+}
+
+@media (min-width: 600px) {
+    .puzzle-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .puzzle-grid {
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: repeat(4, 80px);
+    }
+
+    .puzzle-pieces {
+        width: 340px;
+        min-height: 340px;
+    }
+
+    .puzzle-piece {
+        width: 80px;
+        height: 80px;
+    }
+
+    .drop-zone {
+        width: 80px;
+        height: 80px;
+    }
+
+    .game-container {
+        width: 800px;
+    }
+}
+
+/* Day 13: Connect Four Hearts */
+.connect4-board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1vmin;
+    background-color: #ffeff2;
+    border: 5px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 1.5vmin;
+    margin: 1rem auto;
+    /* Center the board */
+    width: auto;
+    /* Let content determine width */
+    max-width: 100%;
+    /* Ensure it doesn't overflow */
+    box-sizing: border-box;
+}
+
+.connect4-cell {
+    width: 9vmin;
+    /* Responsive cell size */
+    height: 10vmin;
+    max-width: 55px;
+    /* Cap the size on large screens */
+    max-height: 55px;
+    aspect-ratio: 1 / 1;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.connect4-cell:hover {
+    background-color: #fce4ec;
+}
+
+.connect4-cell .heart-piece {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    animation: drop-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.connect4-cell .heart-piece::before,
+.connect4-cell .heart-piece::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    width: 50%;
+    height: 80%;
+    background: inherit;
+    border-radius: 50% 50% 0 0;
+}
+
+.connect4-cell .heart-piece::before {
+    left: 50%;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.connect4-cell .heart-piece::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.connect4-cell.player1 .heart-piece::before,
+.connect4-cell.player1 .heart-piece::after {
+    background-color: #ff4d6d;
+    /* Red */
+}
+
+.connect4-cell.player2 .heart-piece::before,
+.connect4-cell.player2 .heart-piece::after {
+    background-color: #4d9ffc;
+    /* Blue */
+}
+
+.turn-indicator {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+@keyframes drop-in {
+    from {
+        transform: translateY(-200px) scale(0.8);
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .connect4-cell {
+        width: 9.5vw;
+        height: 10vw;
+    }
+
+    .connect4-cell .heart-piece::before,
+    .connect4-cell .heart-piece::after {
+        width: 5vw;
+        height: 8vw;
+        top: 2vw;
+    }
+
+    .connect4-cell .heart-piece::before {
+        left: 5vw;
+    }
 }
