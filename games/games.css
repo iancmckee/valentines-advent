@@ -526,6 +526,44 @@
         flex-direction: column;
         gap: 0.5rem;
     }
+
+    /* Modal Mobile Adjustments */
+    .modal {
+        padding: 1.5rem;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .modal p {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .modal-photo {
+        width: 140px;
+        height: 140px;
+        border-width: 5px;
+        border-bottom-width: 15px;
+        margin-bottom: 1rem;
+    }
+
+    .modal-buttons {
+        margin-top: 1rem;
+        gap: 0.5rem;
+    }
+
+    .btn-home,
+    .btn-replay {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        margin-top: 0.5rem;
+    }
 }
 
 @media (max-height: 700px) {
@@ -935,4 +973,329 @@
     .connect4-cell .heart-piece::before {
         left: 5vw;
     }
+}
+
+/* Day 14: He Loves Me... */
+#feb14-container .game-area {
+    position: relative;
+    height: 80vmin;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+#bouquet, #single-flower {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#bouquet {
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    z-index: 10;
+}
+
+#bouquet:hover {
+    transform: translate(-50%, -52%) scale(1.05);
+}
+
+#bouquet.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Improved CSS Bouquet Representation */
+.bouquet-wrapper {
+    position: relative;
+    width: 40vmin;
+    height: 50vmin;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.wrapper-back {
+    position: absolute;
+    bottom: 7vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22vmin;
+    height: 20vmin; /* Even shorter wrapping */
+    background: #a1887f;
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    z-index: 0;
+}
+
+.stems-group {
+    position: absolute;
+    bottom: 5.5vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5.5vmin;
+    height: 35vmin; /* Taller stems to be visible above shorter wrapper */
+    background: repeating-linear-gradient(
+        90deg,
+        #4caf50 0,
+        #4caf50 0.8vmin,
+        #388e3c 0.8vmin,
+        #388e3c 1.6vmin
+    );
+    z-index: 1;
+    border-radius: 0 0 2vmin 2vmin;
+}
+
+.b-flowers {
+    position: absolute;
+    top: 2vmin; /* Higher up */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36vmin;
+    height: 27vmin;
+    z-index: 2;
+}
+
+.b-flower {
+    position: absolute;
+    width: 12vmin;
+    height: 12vmin;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #ffeb3b 20%, #e91e63 21%, #ad1457 100%);
+    box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.2);
+}
+
+.b-flower::before {
+    content: '';
+    position: absolute;
+    top: -0.5vmin; left: -0.5vmin; right: -0.5vmin; bottom: -0.5vmin;
+    border-radius: 50%;
+    border: 0.5vmin dashed rgba(255,255,255,0.4);
+}
+
+/* Different flower colors/positions */
+.f1 { top: 5vmin; left: 2vmin; transform: rotate(-15deg); }
+.f2 { top: 0vmin; left: 12vmin; background: radial-gradient(circle at 50% 50%, #fff 20%, #f44336 21%, #b71c1c 100%); transform: rotate(10deg); z-index: 5; }
+.f3 { top: 5vmin; right: 2vmin; background: radial-gradient(circle at 50% 50%, #ff9800 20%, #9c27b0 21%, #4a148c 100%); transform: rotate(15deg); }
+.f4 { top: 12vmin; left: 6vmin; background: radial-gradient(circle at 50% 50%, #ffeb3b 20%, #ff5722 21%, #bf360c 100%); transform: scale(0.9) rotate(-10deg); z-index: 4; }
+.f5 { top: 12vmin; right: 6vmin; transform: scale(0.9) rotate(5deg); z-index: 4; }
+
+.wrapper-front {
+    position: absolute;
+    bottom: 7vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22vmin;
+    height: 20vmin; /* Even shorter wrapping */
+    z-index: 6;
+    pointer-events: none;
+}
+
+.fold-left, .fold-right {
+    position: absolute;
+    bottom: 0;
+    width: 18vmin;
+    height: 20vmin; /* Even shorter wrapping */
+}
+
+.fold-left {
+    left: -3.5vmin;
+    background: #8d6e63;
+    clip-path: polygon(20% 0%, 100% 0%, 70% 100%, 50% 100%);
+    transform: rotate(-5deg);
+}
+
+.fold-right {
+    right: -3.5vmin;
+    background: #795548;
+    clip-path: polygon(0% 0%, 80% 0%, 50% 100%, 30% 100%);
+    transform: rotate(5deg);
+}
+
+.wrapper-bow {
+    position: absolute;
+    bottom: 16vmin; /* Raised ribbon */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bow-center {
+    width: 3.5vmin;
+    height: 3.5vmin;
+    background: #d81b60;
+    border-radius: 1vmin;
+    z-index: 2;
+    box-shadow: 0 0.4vmin 1vmin rgba(0,0,0,0.2);
+}
+
+.bow-left, .bow-right {
+    position: absolute;
+    top: -1vmin;
+    width: 7vmin;
+    height: 5.5vmin;
+    background: #e91e63;
+    border-radius: 10vmin;
+    z-index: 1;
+}
+
+.bow-left {
+    left: -6vmin;
+    transform: rotate(-20deg);
+}
+
+.bow-right {
+    right: -6vmin;
+    transform: rotate(20deg);
+}
+
+.bow-left::after, .bow-right::after {
+    content: "";
+    position: absolute;
+    top: 3.5vmin;
+    width: 2.7vmin;
+    height: 9vmin;
+    background: #d81b60;
+    border-radius: 0 0 2vmin 2vmin;
+}
+
+.bow-left::after {
+    left: 2.7vmin;
+    transform: rotate(10deg);
+}
+
+.bow-right::after {
+    right: 2.7vmin;
+    transform: rotate(-10deg);
+}
+
+
+/* Single Flower */
+#single-flower {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    width: 36vmin;
+    height: 72vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#single-flower.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.stem {
+    width: 2vmin;
+    height: 45vmin;
+    background: #4caf50;
+    border-radius: 1vmin;
+    margin-top: 22vmin; /* Positioned so it starts behind the center of the flower head */
+    z-index: 1;
+}
+
+.flower-head {
+    position: absolute;
+    top: 9vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 27vmin;
+    height: 27vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.center {
+    width: 7vmin;
+    height: 7vmin;
+    background: #ffeb3b;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: inset 0 -0.4vmin 1vmin rgba(0,0,0,0.2);
+}
+
+.petal {
+    position: absolute;
+    width: 5.5vmin;
+    height: 14.5vmin;
+    background: linear-gradient(to bottom, #ffcdd2, #e57373);
+    border-radius: 50% 50% 10% 10%;
+    transform-origin: bottom center;
+    bottom: 50%;
+    left: calc(50% - 2.75vmin);
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.2s;
+    transform: rotate(var(--angle)) translateY(-2.7vmin);
+}
+
+.petal:hover {
+    filter: brightness(1.1);
+}
+
+/* Animation for falling petal */
+.petal.falling {
+    animation: fall-off 1.5s forwards ease-in;
+    pointer-events: none;
+}
+
+@keyframes fall-off {
+    0% {
+        transform: rotate(var(--angle)) translateY(-2.7vmin);
+    }
+    20% {
+        transform: rotate(var(--angle)) translateY(-2.7vmin) rotate(10deg);
+    }
+    100% {
+        transform: translateY(55vmin) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Status Text */
+.love-status {
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    min-height: 3rem;
+    transition: opacity 0.3s, color 0.3s;
+}
+
+.love-status.love {
+    color: #e91e63;
+}
+
+.love-status.not-love {
+    color: #9e9e9e;
+    font-size: 1.5rem;
+}
+
+.love-status.final-love {
+    color: #d81b60;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }

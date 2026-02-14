@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February 14 - He Loves Me...</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body class="game-body">
+    <div class="game-container" id="feb14-container">
+        <h1>He Loves Me...</h1>
+        <p id="instruction">Grab a flower from the bouquet!</p>
+        
+        <div class="game-area">
+            <div id="bouquet" class="bouquet">
+                <div class="bouquet-wrapper">
+                    <div class="wrapper-back"></div>
+                    <div class="stems-group"></div>
+                    <div class="b-flowers">
+                        <div class="b-flower f1"></div>
+                        <div class="b-flower f2"></div>
+                        <div class="b-flower f3"></div>
+                        <div class="b-flower f4"></div>
+                        <div class="b-flower f5"></div>
+                    </div>
+                    <div class="wrapper-front">
+                        <div class="fold-left"></div>
+                        <div class="fold-right"></div>
+                    </div>
+                    <div class="wrapper-bow">
+                        <div class="bow-left"></div>
+                        <div class="bow-center"></div>
+                        <div class="bow-right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="single-flower" class="single-flower hidden">
+                <div class="stem"></div>
+                <div class="flower-head">
+                    <div class="center"></div>
+                    <!-- Petals will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="love-status" class="love-status"></div>
+    </div>
+
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <img id="success-photo" class="modal-photo" src="" alt="Love!" style="display:none;">
+            <h2>And I always will!</h2>
+            <p>Happy Valentine's Day! ❤️</p>
+            <p>p.s. yes I rigged this</p>
+            <div class="modal-buttons">
+                <button id="replay-btn" class="btn-home btn-replay">Play Again</button>
+                <a href="../index.html" class="btn-home">Back to Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="feb14.js"></script>
+</body>
+
+</html>
